@@ -1,0 +1,73 @@
+extends layout
+
+block header
+    style.
+        fieldset {
+            padding-top: 0;
+            padding-bottom: 16px;
+            margin: 0;
+            border: 0;
+        }
+        .actions{
+            margin-top: 10px;
+        }
+        .card {
+            width: 224px;
+            display: inline-flex;
+            margin: 5px;
+        }
+        .media{
+            height: 140px;
+        }
+        .card.selected{
+            border: 1px solid red;
+        }
+        .media-list{
+            overflow: scroll;
+            height: 600px;
+            width: 496px;
+            float: left;
+        }
+        .media-list, .imdb-info{
+            
+        }
+        .imdb-info{
+            flex: 1;
+            margin-left: 10px;
+        }
+        .imdb-item{
+            float: left;
+            height: 113px;
+            margin: 3px;
+            width: 76px;
+        }
+        .imdb-item img{
+            height: 113px;
+            width: 76px;
+        }
+        .imdb-item:hover{
+            box-shadow: 0 0 0 2px #f3ce13;
+        }
+        .align-right{
+            display: flex;
+            justify-content: flex-end;
+            padding: 16px 8px;
+            flex: 1;
+        }
+        .flex-container{
+            display: flex;
+        }
+        .imdb-search-result-container{
+            
+        }
+block content
+    div(class="mdc-toolbar-fixed-adjust")
+    fieldset
+        //- h2(class="mdc-typography--headline6")="Import Media from GDrive"
+        div(id="like_button_container")
+    script(src="https://unpkg.com/react@16/umd/react.development.js", crossorigin=true) 
+    script(src="https://unpkg.com/react-dom@16/umd/react-dom.development.js", crossorigin=true) 
+    //-script(src="https://unpkg.com/@material-ui/core/umd/material-ui.development.js", crossorigin=true) 
+    //- script(src="https://unpkg.com/babel-standalone@6/babel.min.js", crossorigin=true) 
+    //- script(src='/javascripts/importmediacatalog.js', type="text/babel")
+    script(src='/javascripts/bundle.js')

@@ -1,0 +1,22 @@
+extends layout
+
+block header
+    style.
+        fieldset {
+            padding-top: 0;
+            padding-bottom: 16px;
+            margin: 0;
+            border: 0;
+        }
+        .progress-list{
+            border: 1px solid rgba(0,0,0,.1);
+        }
+        .progress-navigator{
+            text-decoration-line: none;
+        }
+block content
+    div(class="mdc-toolbar-fixed-adjust")
+    fieldset
+        h2(class="mdc-typography--headline6")="Current Media stream"
+        a(href="/videos/getCurrentMedia")="Get current Media"
+        a(href="/videos/getCurrentMediaStream")="Get current Media Stream"

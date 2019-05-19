@@ -1,0 +1,31 @@
+extends layout
+
+block header
+    style.
+        .player{
+            padding-top: 80px;
+            max-width: 786px;
+            margin: auto;
+        }
+        fieldset {
+            padding-top: 0;
+            padding-bottom: 16px;
+            margin: 0;
+            border: 0;
+        }
+        .actions{
+            margin-top: 10px;
+        }
+block content
+    div(class="mdc-toolbar-fixed-adjust")
+    fieldset
+        h6(class="mdc-typography--headline6")="Add Media"
+        form(method="post")
+            div(class="mdc-text-field mdc-text-field--fullwidth ") 
+                input(type="text", class="mdc-text-field__input", name="gdlink", placeholder="GD Link", aria-label="GD Link",autofocus) 
+            div.actions
+                //- input(type="submit", value="plus-square", class="mdc-button mdc-button--raised mdc-ripple-upgraded")="add_box"
+                submit(class="mdc-ripple-surface demo-surface material-icons mdc-toolbar__icon")="add_box"
+            pre.json=JSON.stringify(fileInfo, null, 4)
+            -if (fileInfo && fileInfo.id)
+                a(href="/index/getinfo?fileid=" + fileInfo.id, target="_blank", class="mdc-button mdc-button--raised mdc-ripple-upgraded")="info"

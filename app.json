@@ -1,0 +1,26 @@
+{
+  "name": "gDrive2gPhotos",
+  "scripts": {
+  },
+  "env": {
+    "GClientCallbackUrl": {
+      "required": true
+    },
+    "GClientId": {
+      "required": true
+    },
+    "GClientSecret": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}

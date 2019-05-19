@@ -1,0 +1,39 @@
+doctype html
+html
+  head
+    title= title
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    //- script(src="https://raw.githubusercontent.com/material-components/material-components-web/master/demos/ready.js")
+    link(rel="stylesheet", href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css")
+    link(rel="stylesheet", href="https://fonts.googleapis.com/icon?family=Material+Icons")
+    script(src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js")
+    block header
+  body
+    header(class="mdc-toolbar mdc-toolbar--fixed")
+      div(class="mdc-toolbar__row")
+        section(class="mdc-toolbar__section mdc-toolbar__section--align-start")
+          i(class="material-icons mdc-toolbar__menu-icon")="menu"
+            //- span(class="mdc-toolbar__title")="Toolbar"
+          span(class="mdc-toolbar__title catalog-title")="Google Drive Media Catalog"
+          //- <span class="catalog-logo mdc-toolbar__menu-icon">
+          //-   <img src="/images/ic_component_24px_white.svg">
+          //- </span>
+        section(class="mdc-toolbar__section mdc-toolbar__section--align-end", role="toolbar")
+          a(href="/index" class="mdc-ripple-surface demo-surface material-icons mdc-toolbar__icon", title="Home")="home"
+          a(href="/index/search" class="mdc-ripple-surface demo-surface material-icons mdc-toolbar__icon", title="Search")="search"
+          a(href="/index/addlink" class="mdc-ripple-surface demo-surface material-icons mdc-toolbar__icon", title="Add")="add"
+          a(href="/index/rokugenerator" class="mdc-ripple-surface demo-surface material-icons mdc-toolbar__icon", title="Generate Roku Channel Json")="airplay"
+          a(href="/videos/getCurrentMedia" class="mdc-ripple-surface demo-surface material-icons mdc-toolbar__icon", title="Get Current Media Stream")="cast"
+          a(href="/videos/progress" class="mdc-ripple-surface demo-surface material-icons mdc-toolbar__icon", title="List Progress")="list"
+          a(href="/videos/getM3U" class="mdc-ripple-surface demo-surface material-icons mdc-toolbar__icon", title="get m3u")="tune"
+          a(href="/logout" class="mdc-ripple-surface demo-surface material-icons mdc-toolbar__icon", title="Sign Out")="power_settings_new"
+                //- <a href="#" class="material-icons mdc-toolbar__icon" aria-label="Print this page" alt="Print this page">print</a>
+                //- <a href="#" class="material-icons mdc-toolbar__icon" aria-label="Bookmark this page" alt="Bookmark this page">bookmark</a>
+      div(role="progressbar", class="mdc-linear-progress mdc-linear-progress--indeterminate", id="loadMoreProgressBar", style="display:none;")
+          div(class="mdc-linear-progress__buffering-dots")
+          div(class="mdc-linear-progress__buffer")
+          div(class="mdc-linear-progress__bar mdc-linear-progress__primary-bar")
+              span(class="mdc-linear-progress__bar-inner")
+          div(class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar")
+              span(class="mdc-linear-progress__bar-inner")
+    block content

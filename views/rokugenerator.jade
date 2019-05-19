@@ -1,0 +1,23 @@
+extends layout
+
+block header
+    style.
+        fieldset {
+            padding-top: 0;
+            padding-bottom: 16px;
+            margin: 0;
+            border: 0;
+        }
+        .actions{
+            margin-top: 10px;
+        }
+block content
+    div(class="mdc-toolbar-fixed-adjust")
+    fieldset
+        h2(class="mdc-typography--headline6")="Search"
+        form(method="get", action="/index/rokuchannel")
+            div(class="mdc-text-field mdc-text-field--fullwidth") 
+                input(type="text", class="mdc-text-field__input", name="folderid", placeholder="Roku content folder id", aria-label="GD Link",autofocus)
+            div.actions
+                submit(type="submit", value="Generate", class="mdc-ripple-surface demo-surface material-icons mdc-toolbar__icon")="Generate"
+        

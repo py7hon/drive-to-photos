@@ -1,0 +1,39 @@
+div(class="mdc-layout-grid") 
+    div(class="mdc-layout-grid__inner") 
+      each o in files
+        div(class="mdc-layout-grid__cell", data-doc-id="#{o.id}")
+          //- div(class="mdc-card mdc-ripple-surface mdc-ripple-surface--primary mdc-theme--primary demo-surface mdc-elevation--z2")
+          div(class="mdc-card")
+            div
+              section(class="mdc-card__media demo-card__16-9-media", style="background-image: url("+(o.thumbnailLink)+")")
+                div(class="mdc-card__subtitle")= o.runTime
+                div=o.resolution
+                div=o.size
+              section(class="mdc-card__primary")
+                h3(class="mdc-card__title", title=o.name)=o.name
+                .mdc-card__actions.mdc-card__actions--full-bleed
+                  //- .mdc-card__action-buttons
+                  //-   a.mdc-button.mdc-card__action.mdc-card__action--button.mdc-ripple-upgraded Read
+                  //-   a.mdc-button.mdc-card__action.mdc-card__action--button.mdc-ripple-upgraded Bookmark
+                  .mdc-card__action-icons
+                    //- button.mdc-icon-button.mdc-card__action.mdc-card__action--icon.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded(aria-pressed='false', aria-label='Add to favorites', title='Add to favorites', style='--mdc-ripple-fg-size:28px; --mdc-ripple-fg-scale:1.71429; --mdc-ripple-left:10px; --mdc-ripple-top:10px;')
+                    //-   i.material-icons.mdc-icon-button__icon.mdc-icon-button__icon--on favorite
+                    //-   i.material-icons.mdc-icon-button__icon favorite_border
+                    //- button.mdc-icon-button.material-icons.mdc-card__action.mdc-card__action--icon.mdc-ripple-upgraded--unbounded.mdc-ripple-upgraded(title='Share', data-mdc-ripple-is-unbounded='true', style='--mdc-ripple-fg-size:28px; --mdc-ripple-fg-scale:1.71429; --mdc-ripple-left:10px; --mdc-ripple-top:10px;') share
+                    //- button.mdc-icon-button.material-icons.mdc-card__action.mdc-card__action--icon.mdc-ripple-upgraded--unbounded.mdc-ripple-upgraded(title='More options', data-mdc-ripple-is-unbounded='true', style='--mdc-ripple-fg-size:28px; --mdc-ripple-fg-scale:1.71429; --mdc-ripple-left:10px; --mdc-ripple-top:10px;') more_vert
+                    a(href="/index/player/" + o.id, target="_blank",class="mdc-ripple-surface demo-surface material-icons mdc-toolbar__icon", title="Play")="play_circle_filled"
+                    a(href="/index/getinfo?fileid=" + o.id, target="_blank",class="mdc-ripple-surface demo-surface material-icons mdc-toolbar__icon", title="More Info")="info"
+                    a(class="mdc-ripple-surface demo-surface material-icons mdc-toolbar__icon", onclick="removeVideo('#{o.id}')", title="Remove")="delete"
+                    a(class="mdc-ripple-surface demo-surface material-icons mdc-toolbar__icon", title="Download")="file_download"
+                    
+                //- form(method="post", action="/index/addToIgnoreList")
+                  //- img(src=o.iconLink, alt=o.mimeType)
+                  //- input(type="hidden", name="fileId", value= o.id) 
+                  //- a(href="/index/player/" + o.id, target="_blank",class="mdc-ripple-surface demo-surface material-icons mdc-toolbar__icon")="play_circle_filled"
+                  //- a(href="/index/getinfo?fileid=" + o.id, target="_blank",class="mdc-ripple-surface demo-surface material-icons mdc-toolbar__icon")="info"
+                  //- a(class="mdc-ripple-surface demo-surface material-icons mdc-toolbar__icon")="cloud_upload"
+                  //- button(type="submit", value="Ignore", class="mdc-ripple-surface demo-surface material-icons mdc-toolbar__icon")="cloud_upload"
+                //-h2 class="mdc-card__subtitle">Subtitle here</h2>
+    if nextPageToken
+        button(onclick="loadMore(this)", class="mdc-button mdc-button--raised load-more-link", data-next-page-token=nextPageToken)="Load more..."
+  script(src='/javascripts/index.js')

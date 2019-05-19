@@ -1,0 +1,29 @@
+extends layout
+
+block header
+    style.
+        fieldset {
+            padding-top: 0;
+            padding-bottom: 16px;
+            margin: 0;
+            border: 0;
+        }
+        .progress-list{
+            border: 1px solid rgba(0,0,0,.1);
+        }
+        .progress-navigator{
+            text-decoration-line: none;
+        }
+        .actions{
+            margin-top: 10px;
+        }
+block content
+    div(class="mdc-toolbar-fixed-adjust")
+    fieldset
+        h2(class="mdc-typography--headline6")="Get Current Media"
+        pre.json=JSON.stringify(data, null, 4)
+        form(action="setCurrentMedia", method="post")
+            div(class="mdc-text-field mdc-text-field--fullwidth") 
+                input(name="fileid", class="mdc-text-field__input", type="text", placeholder="Enter media link or google drive id", aria-label="Full-Width Text Field",autofocus) 
+            div.actions
+                input(type="submit", value="Set as Current Media", class="mdc-button mdc-button--raised mdc-ripple-upgraded")             

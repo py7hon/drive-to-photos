@@ -1,0 +1,56 @@
+extends layout
+
+block header
+    style.
+        fieldset {
+            padding-top: 0;
+            padding-bottom: 16px;
+            margin: 0;
+            border: 0;
+        }
+        .actions{
+            margin-top: 10px;
+        }
+block content
+    div(class="mdc-toolbar-fixed-adjust")
+    fieldset
+        h2(class="mdc-typography--headline6")="Search"
+        form(method="get", action="/index")
+            div(class="mdc-text-field mdc-text-field--fullwidth") 
+                input(type="text", class="mdc-text-field__input", name="search", placeholder="Media Name", aria-label="GD Link",autofocus)
+            div(class="mdc-form-field") 
+                div(class="mdc-checkbox")
+                    input(type="checkbox", class="mdc-checkbox__native-control", name="quality", value="SD", id="quality-SD")
+                    div(class="mdc-checkbox__background")
+                        svg(class="mdc-checkbox__checkmark", viewBox="0 0 24 24")
+                            path(class="mdc-checkbox__checkmark-path",fill="none",d="M1.73,12.91 8.1,19.28 22.79,4.59")
+                        div(class="mdc-checkbox__mixedmark")
+                label(for="quality-SD")="SD"
+            div(class="mdc-form-field") 
+                div(class="mdc-checkbox")
+                    input(type="checkbox", class="mdc-checkbox__native-control", name="quality", value="HD", id="quality-720")
+                    div(class="mdc-checkbox__background")
+                        svg(class="mdc-checkbox__checkmark", viewBox="0 0 24 24")
+                            path(class="mdc-checkbox__checkmark-path",fill="none",d="M1.73,12.91 8.1,19.28 22.79,4.59")
+                        div(class="mdc-checkbox__mixedmark")
+                label(for="quality-720")="720p"
+            div(class="mdc-form-field") 
+                div(class="mdc-checkbox")
+                    input(type="checkbox", class="mdc-checkbox__native-control", name="quality", value="FHD", id="quality-1080")
+                    div(class="mdc-checkbox__background")
+                        svg(class="mdc-checkbox__checkmark", viewBox="0 0 24 24")
+                            path(class="mdc-checkbox__checkmark-path",fill="none",d="M1.73,12.91 8.1,19.28 22.79,4.59")
+                        div(class="mdc-checkbox__mixedmark")
+                label(for="quality-1080")="1080p"
+            div(class="mdc-form-field") 
+                div(class="mdc-checkbox")
+                    input(type="checkbox", class="mdc-checkbox__native-control", name="quality", value="4K", id="quality-4k")
+                    div(class="mdc-checkbox__background")
+                        svg(class="mdc-checkbox__checkmark", viewBox="0 0 24 24")
+                            path(class="mdc-checkbox__checkmark-path",fill="none",d="M1.73,12.91 8.1,19.28 22.79,4.59")
+                        div(class="mdc-checkbox__mixedmark")
+                label(for="quality-4k")="4K"
+            div.actions
+                submit(type="submit", value="Search", class="mdc-ripple-surface demo-surface material-icons mdc-toolbar__icon")="search"
+            pre.json=JSON.stringify(fileInfo, null, 4)
+        

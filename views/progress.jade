@@ -1,0 +1,36 @@
+extends layout
+
+block header
+    style.
+        fieldset {
+            padding-top: 0;
+            padding-bottom: 16px;
+            margin: 0;
+            border: 0;
+        }
+        .progress-list{
+            border: 1px solid rgba(0,0,0,.1);
+        }
+        .progress-navigator{
+            text-decoration-line: none;
+        }
+block content
+    div(class="mdc-toolbar-fixed-adjust")
+    fieldset
+        h2(class="mdc-typography--headline6")="Media Upload to Youtube progress"
+    -if(runCollection)
+        ul(class="mdc-list progress-list", aria-orientation="vertical")
+            -if(runCollection.length==0)
+                li="No upload in progress"
+            each o in runCollection
+                li(class="mdc-list-item")
+                    //- span(class="mdc-list-item__text")=JSON.stringify(o)
+                    span(class="mdc-list-item__graphic material-icons" aria-hidden="true")="data_usage"
+                    span(class="mdc-list-item__text")=o.fileName
+                    a(href="/videos/progress/" + o.progressId, class="mdc-list-item__meta material-icons progress-navigator")="info"
+    -if(runId)
+        div(id="progressInfo")
+        //- pre.json=JSON.stringify(progressInfo, null, 4)
+        script(src='/javascripts/index.js')
+        script.
+            loadVideoUploadProgress('#{runId}', 'progressInfo');

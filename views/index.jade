@@ -1,0 +1,119 @@
+extends layout
+block content
+  link(rel="stylesheet", href="https://tympanus.net/Development/ProgressButtonStyles/css/normalize.css")
+  //- link(rel="stylesheet", href="https://tympanus.net/Development/ProgressButtonStyles/css/demo.css")
+  link(rel="stylesheet", href="https://tympanus.net/Development/ProgressButtonStyles/css/component.css")
+  
+  //- link(rel="stylesheet", href="http://material-components-web.appspot.com/assets/list.css")
+  //- link(rel="stylesheet", href="http://material-components-web.appspot.com/assets/button.css")
+  //- link(rel="stylesheet", href="http://material-components-web.appspot.com/assets/card.css")
+  
+  //- link(rel="stylesheet", href="http://material-components-web.appspot.com/assets/simple-menu.css")
+  //- link(rel="stylesheet", href="http://material-components-web.appspot.com/assets/ripple.css")
+  //- link(rel="stylesheet", href="http://material-components-web.appspot.com/assets/linear-progress.css")
+  //- link(rel="stylesheet", href="https://material-components-web.appspot.com/assets/layout-grid.css")
+  
+  //- link(rel="stylesheet", href="https://tympanus.net/Development/ProgressButtonStyles/css/component.css")
+  //- link(rel="stylesheet", href="https://tympanus.net/Development/ProgressButtonStyles/css/component.css")
+  //- link(rel="stylesheet", href="https://tympanus.net/Development/ProgressButtonStyles/css/component.css")
+  link(rel='stylesheet', href='/stylesheets/style.css')
+  //- link(rel='stylesheet', href='https://fonts.googleapis.com/icon?family=Material+Icons')
+  //- link(rel='stylesheet', href='https://code.getmdl.io/1.3.0/material.indigo-pink.min.css')
+  //- link(rel="stylesheet", href="https://fonts.googleapis.com/icon?family=Material+Icons")
+  
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/superagent/3.8.1/superagent.js')
+  script(src="https://tympanus.net/Development/ProgressButtonStyles/js/modernizr.custom.js")
+  script(src="https://tympanus.net/Development/ProgressButtonStyles/js/classie.js")
+  script(src="http://material-components-web.appspot.com/ready.js")
+
+  //- h1= title
+  //- p Welcome to #{title}
+  include index_partial.jade
+
+  //- !=partial("/index_partial")
+  //- div(class="mdc-layout-grid") 
+  //-   div(class="mdc-layout-grid__inner") 
+  //-     each o in files
+  //-       div(class="mdc-layout-grid__cell")
+  //-         //- div(class="mdc-card mdc-ripple-surface mdc-ripple-surface--primary mdc-theme--primary demo-surface mdc-elevation--z2")
+  //-         div(class="mdc-card")
+  //-           div
+  //-             section(class="mdc-card__media demo-card__16-9-media", style="background-image: url("+(o.thumbnailLink)+")")
+  //-               div(class="mdc-card__subtitle")= o.runTime
+  //-             section(class="mdc-card__primary")
+  //-               h1(class="mdc-card__title", title=o.name)=o.name
+  //-               span=o.mimeType
+  //-               a(href="/index/player/" + o.id, target="_blank")="Play"
+  //-               //-h2 class="mdc-card__subtitle">Subtitle here</h2>
+
+  //- each o in files
+  //-   div(class="mdc-card demo-card",style="display:none")
+  //-     //- div(class="mdc-card__title demo-card__16-9-media", style="background-image: url("+o.thumbnailLink+")")
+  //-     //-   h2(class="mdc-card__title-text")= o.name
+  //-     //- div(class="mdc-card__media")
+  //-     //-   img(src=o.thumbnailLink)
+  //-     section(class="mdc-card__media demo-card__16-9-media", style="background-image: url("+(o.thumbnailLink)+")")
+  //-       //- input(type='checkbox', class="mdc-checkbox")
+  //-       //- h2(class="mdc-card__title")= o.name
+  //-       div(class="mdc-card__subtitle")= "32:22"
+  //-     div(role="progressbar", style="display:none;", class="mdc-linear-progress mdc-linear-progress--indeterminate")
+  //-       div(class="mdc-linear-progress__buffering-dots")
+  //-       div(class="mdc-linear-progress__buffer")
+  //-       div(class="mdc-linear-progress__bar mdc-linear-progress__primary-bar")
+  //-         span(class="mdc-linear-progress__bar-inner")
+  //-       div(class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar")
+  //-         span(class="mdc-linear-progress__bar-inner")
+  //-     section(class="mdc-card__primary")
+  //-       h1(class="mdc-card__title mdc-card__title")= o.name
+  //-       h2(class="mdc-card__subtitle")= "10 MB"
+  //-     section(class="mdc-card__actions")
+  //-       i(class="material-icons")="add_to_photos"
+  //-       button(class="mdc-button")="tes"  
+  //-     //-   button(class="mdc-button mdc-button--colored  mdc-js-button mdc-js-ripple-effect")= "Add to Album"
+  //-     //-   button(class="mdc-button mdc-button--raised")= "Action 2"
+  //-     //- div(class="mdc-card__menu")
+  //-     //-   button(class="mdc-button mdc-button--icon mdc-js-button mdc-js-ripple-effect")
+  //-     //-     i(class="material-icons")="share"
+    
+  //- table(style="display:none;")
+  //-   thead
+  //-     tr
+  //-       th= "Thumb"
+  //-       th= "File Name"
+  //-       th= "Transfer"
+  //-   tbody
+  //-     each o in files
+  //-       tr
+  //-         td
+  //-           img(src= o.thumbnailLink)
+  //-         td
+  //-           div
+  //-             span= o.name
+  //-             br
+  //-             span
+  //-         td
+  //-           h1(id="progress_" + o.id)
+  //-           select(id="ddl_" + o.id)
+  //-             each album in albums
+  //-               option(value="#{album.id}") #{album.title}
+  //-           //- button(onclick='transfer("#{o.id}")', class="progress-button" ,data-style="rotate-side-down", data-perspective data-horizontal) Transfer
+  //-           button(onclick='transfer("#{o.id}")') Transfer
+  //-           button(onclick='viewPhotos("#{o.id}")') View Photos
+
+
+  //- script(src="https://tympanus.net/Development/ProgressButtonStyles/js/progressButton.js")
+  //- script(src="https://inorganik.github.io/countUp.js/countUp.js")
+  //- script(src='/javascripts/index.js')
+  script(src='//material-components-web.appspot.com/assets/material-components-web.js')
+  script(src='/javascripts/index.js')
+  //- script.
+  //-   demoReady(function () {
+  //-           var menuEl = document.querySelector('#demo-menu');
+  //-           var menu = new mdc.menu.MDCSimpleMenu(menuEl);
+  //-           var menuButtonEl = document.querySelector('#menu-button');
+  //-           menuButtonEl.addEventListener('click', function () {
+  //-               menu.open = !menu.open;
+  //-           });
+  //-       })
+              

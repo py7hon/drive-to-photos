@@ -1,0 +1,29 @@
+extends layout
+
+block header
+    style.
+        .player{
+            padding-top: 80px;
+            max-width: 786px;
+            margin: auto;
+        }
+        fieldset {
+            padding-top: 0;
+            padding-bottom: 16px;
+            margin: 0;
+            border: 0;
+        }
+        .actions{
+            margin-top: 10px;
+        }
+block content
+    div(class="mdc-toolbar-fixed-adjust")
+    fieldset
+        h6(class="mdc-typography--headline6")="Add Media"
+        form(action="setM3U", method="post")
+            div(class="mdc-text-field mdc-text-field--fullwidth ") 
+                textarea(id="m3u", name="m3u", placeholder="M3U Content")
+            div.actions
+                //- input(type="submit", value="plus-square", class="mdc-button mdc-button--raised mdc-ripple-upgraded")="add_box"
+                input(type="submit", value="Save M3U content", class="mdc-button mdc-button--raised mdc-ripple-upgraded")             
+            pre.json=JSON.stringify(m3ucontent, null, 4)

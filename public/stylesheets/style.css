@@ -1,0 +1,139 @@
+body {
+  /* padding: 64px; */
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding-top: 64px;
+}
+
+@media (max-width: 959px) and (orientation: landscape) {
+  body {
+    padding-top: 48px; } }
+@media (max-width: 599px) {
+  body {
+    padding-top: 56px; } }
+
+a {
+  color: #00B7FF;
+}
+
+.demo-card {
+  width: 220px;
+  background-color: white;
+}
+
+.hero {
+  min-height: 480px;
+}
+
+.demo-card {
+  max-width: 21.875rem;
+  /* 350sp */
+  margin-bottom: 48px;
+
+  display: inline-table;
+  margin-right: 5px;
+}
+
+@media(min-width: 768px) {
+  .demo-card {
+      margin-bottom: 24px;
+  }
+}
+
+.demo-card__16-9-media {
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fff;
+  padding: 0;
+  padding-top: 56.25%;
+  position: relative;
+  background-position: center;
+}
+
+.mdc-card__title{
+width: 100%;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+padding: 2px;
+margin: 5px 0px;
+}
+/* 
+.mdc-card{
+  position: relative;
+} */
+/* 
+.mdc-card__menu {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  color: #fff;
+}
+
+.mdc-button--icon {
+  border-radius: 50%;
+  font-size: 24px;
+  height: 32px;
+  margin-left: 0;
+  margin-right: 0;
+  min-width: 32px;
+  width: 32px;
+  padding: 0;
+  overflow: hidden;
+  color: inherit;
+  line-height: normal;
+}
+
+.mdc-button .material-icons {
+  vertical-align: middle;
+}
+
+.mdc-button--icon .material-icons {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-12px,-12px);
+  transform: translate(-12px,-12px);
+  line-height: 24px;
+  width: 24px;
+} */
+
+.mdc-card__title{
+  /* background: rgba(0, 0, 0, .4);
+  padding: 10px;
+  color: #fff; */
+}
+
+.demo-card__16-9-media .mdc-card__subtitle{
+  display: inline-block;
+  /* position: absolute; */
+  bottom: 0;
+  right: 0;
+  margin: 4px;
+  color: hsl(0, 0%, 100%);
+  background-color: hsl(0, 0%, 6.7%);
+  opacity: .8;
+  padding: 2px 4px;
+  border-radius: 2px;
+  letter-spacing: .5px;
+  /* font-size: 1.2rem; */
+  font-weight: 500;
+  line-height: 1.2rem;
+  position: absolute;
+  -ms-flex-direction: row;
+  /* -webkit-flex-direction: row; */
+  /* flex-direction: row; */
+  -ms-flex-align: center;
+  /* -webkit-align-items: center; */
+  /* align-items: center; */
+  /* display: inline-flex; */
+  /* padding: 0px; */
+  -webkit-user-select: none; /* Safari */        
+-moz-user-select: none; /* Firefox */
+-ms-user-select: none; /* IE10+/Edge */
+user-select: none; /* Standard */
+}
+
+.load-more-link{
+  width: 100%;
+    margin-top: 24px;
+}

@@ -1,0 +1,176 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var app = require('../app');
+var debug = require('debug')('g2g:server');
+var http = require('http');
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+var port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+
+var server = http.createServer(app);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+
+var index = require('../routes/index');
+var users = require('../routes/users');
+var auth = require('../routes/auth');
+var home = require('../routes/home');
+var videos = require('../routes/videos');
+var admin = require('../routes/admin');
+
+var mediaCatalog = require('../routes/mediacatalog');
+
+var ol=require('../routes/ol')
+const io = require('socket.io')(server).of('/notifications');
+
+
+app.use(function (req, res, next) {
+  req.io = io;
+  next();
+});
+
+
+
+app.use('/', home);
+app.use('/users', users);
+app.use('/index', ensureAuthenticated, index);
+app.use('/auth', auth);
+app.use('/videos', videos);
+app.use('/ol', ol);
+app.use('/admin', admin);
+
+app.use('/mediaCatalogs', mediaCatalog);
+
+// catch 404 and forward to error handler
+app.use(function (req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+// error handler
+app.use(function (err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
+
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  res.redirect('/');
+}
+
+// Set socket.io listeners.
+io.on('connection', (socket) => {
+  console.log('a user connected');
+  var downloadSubscriptions = [];
+  //currently we are only subscribing/un for download progress events. We can configure it later on
+  socket.on('subscribe', function (data) {
+    downloadSubscriptions.push(data.requestId);
+    socket.join(data.requestId);
+  });
+
+
+  socket.on('unsubscribe', function (data) {
+    try {
+      var index = downloadSubscriptions.indexOf(data.requestId);
+      index > -1 && downloadSubscriptions.splice(index, 1);
+      socket.leave(data.requestId);
+    } catch (error) {
+      console.log('Error occurred while unsubscribing....' + error);
+    }
+  });
+
+
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+});
+
+// Set Express routes.
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/views/index.html');
+});
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  var bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  debug('Listening on ' + bind);
+}
