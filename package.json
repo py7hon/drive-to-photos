@@ -22,7 +22,7 @@
     "gddirecturl": "0.0.3",
     "google-auth-library": "4.0.0",
     "googleapis": "40.0.0",
-    "got": "8.3.2",
+    "got": "9.6.0",
     "imdb-scrapper": "2.2.0",
     "jade": "1.11.0",
     "morgan": "1.9.1",
