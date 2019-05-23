@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@material-ui/core": "3.9.3",
-    "@material-ui/icons": "3.0.2",
+    "@material-ui/icons": "4.0.0",
     "axios": "0.18.0",
     "body-parser": "1.19.0",
     "browserify": "16.2.3",
